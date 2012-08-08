@@ -5,11 +5,8 @@
 ".button" : {
 	randomProp: 'OK'
 },
-"#index[platform=ios]": {
-	backgroundColor: 'blue'
-},
-"#index[platform=ios size=tablet]": {
-	backgroundColor: 'red'
+"#index": {
+	backgroundColor: '#00f'
 },
 "#b": {
 	randomProp: null
