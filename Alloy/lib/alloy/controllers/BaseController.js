@@ -3,53 +3,45 @@ var Alloy = require('alloy'),
 	_ = Alloy._;
 
 var Controller = function() {
-	var fixArgs = Array.prototype.slice.call(arguments),
-		roots = [];
+	var fixArgs = Array.prototype.slice.call(arguments);
 
-	this.__iamalloy__ = true;
-	_.extend(this, Backbone.Events, {
-		setParent: function(parent) {
-			if (parent.__iamalloy__) {
-				this.parent = parent.parent;
-			} else {
-				this.parent = parent;
-			}
+	if (this.__init) { this.__init(); }
+	if (this.onInit) { this.onInit.apply(this, fixArgs); }
 
-			for (var i = 0, l = roots.length; i < l; i++) {
-				if (roots[i].__iamalloy__) {
-					roots[i].setParent(this.parent);
-				} else {
-					this.parent.add(roots[i]);
-				}
-			}
-		},
-		addRoot: function(view) {
-			roots.push(view);
-		},
-		getRoots: function() {
-			return roots;
-		},
-		getRoot: function(index) {
-			return roots[index || 0];
-		}
-	});
-	// if (this.__init) { this.__init(); }
-	// if (this.preLayout) { this.preLayout.apply(this, fixArgs); }
-	// if (this.__layout) { this.__layout(); }
-	// if (this.__postLayout) { this.__postLayout.apply(this, fixArgs); }
+	// future lifecycle event
+	// if (this.__create) { this.__create(); }
+	// if (this.onCreate) { this.onCreate.apply(this, fixArgs); }
+
+	if (this.__layout) { this.__layout(); }
+	if (this.onReady) { this.onReady.apply(this, fixArgs); }
 }
-//Controller.extend = Backbone.Model.extend;
-// _.extend(Controller.prototype, Backbone.Events, {
-// 	setParent: function(parent) {
-// 		if (this.root) {
-// 			parent.add(this.root);
-// 		} 
-// 	},
-// 	setRoot: function(root) {
-// 		this.root = root;
-// 	},
-// 	getRoot: function() {
-// 		return this.root;
-// 	}
-// });
+Controller.extend = Backbone.Model.extend;
+_.extend(Controller.prototype, Backbone.Events, {
+	__roots: [],
+	__iamalloy: true,
+	setParent: function(parent) {
+		if (parent.__iamalloy) {
+			this.parent = parent.parent;
+		} else {
+			this.parent = parent;
+		}
+
+		for (var i = 0, l = this.__roots.length; i < l; i++) {
+			if (this.__roots[i].__iamalloy) {
+				this.__roots[i].setParent(this.parent);
+			} else {
+				this.parent.add(this.__roots[i]);
+			}
+		}
+	},
+	addRoot: function(view) {
+		this.__roots.push(view);
+	},
+	getRoots: function() {
+		return this.__roots;
+	},
+	getRoot: function(index) {
+		return this.__roots[index || 0];
+	}
+});
 module.exports = Controller;

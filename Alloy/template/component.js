@@ -4,32 +4,13 @@ var Alloy = require('alloy'),
 	A$ = Alloy.A,
 	$;
 
-function Controller() {
-	Alloy.getController('<%= parentController %>').call(this);
-	$ = this;
+<%= controllerCode %>
 
-	<%= viewCode %>
-
-	<%= controllerCode %>
-}
-
-module.exports = Controller;
-
-/*
-< % = initFunction %>
-
-var __class = init();
-__class || (__class = Alloy.getController('BaseController'));
-
-module.exports = __class.extend({
+module.exports = module.exports.extend({
 	__init: function() {
 		$ = this;
 	},
 	__layout: function() {
-		< % = viewCode %>
-	},
-	__postLayout: function() {
-		< % = controllerCode %>
+		<%= viewCode %>
 	}
 });
-*/
