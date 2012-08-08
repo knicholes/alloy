@@ -210,7 +210,6 @@ function parseView(view,dir,manifest) {
 			'All view markup must have a top-level <Alloy> tag'
 		]);
 	}
-	template.parentController = docRoot.getAttribute('parentController') || 'BaseController';
 
 	// Process all <Include> tags 
 	function processInclude(node) {
