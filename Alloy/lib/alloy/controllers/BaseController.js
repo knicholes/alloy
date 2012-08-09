@@ -5,6 +5,7 @@ var Alloy = require('alloy'),
 var Controller = function() {
 	var fixArgs = Array.prototype.slice.call(arguments);
 
+	this.__roots = [];
 	if (this.__init) { this.__init(); }
 	if (this.onInit) { this.onInit.apply(this, fixArgs); }
 
@@ -12,12 +13,11 @@ var Controller = function() {
 	// if (this.__create) { this.__create(); }
 	// if (this.onCreate) { this.onCreate.apply(this, fixArgs); }
 
-	if (this.__layout) { this.__layout(); }
+	if (this.__layout) { this.__layout(this); }
 	if (this.onReady) { this.onReady.apply(this, fixArgs); }
 }
 Controller.extend = Backbone.Model.extend;
 _.extend(Controller.prototype, Backbone.Events, {
-	__roots: [],
 	__iamalloy: true,
 	setParent: function(parent) {
 		if (parent.__iamalloy) {

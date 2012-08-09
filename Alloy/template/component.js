@@ -6,11 +6,16 @@ var Alloy = require('alloy'),
 
 <%= controllerCode %>
 
-module.exports = module.exports.extend({
-	__init: function() {
-		$ = this;
-	},
-	__layout: function() {
-		<%= viewCode %>
-	}
-});
+if (_.isFunction(module.exports.extend)) {
+	module.exports = module.exports.extend({
+		__init: function() {
+			$ = this;
+		},
+		__layout: function($) {
+			// if (this.__parent && this.__parent.prototype.__layout) {
+			// 	this.__parent.prototype.__layout($);
+			// }
+			<%= viewCode %>
+		}
+	});
+}
