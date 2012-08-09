@@ -1,0 +1,12 @@
+"Window": {
+	backgroundColor: '#fff',
+	exitOnClose: true,
+	navBarHidden: true
+},
+"Button": {
+	bottom: '15dp'
+},
+"#container": {
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE
+}

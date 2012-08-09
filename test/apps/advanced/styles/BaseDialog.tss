@@ -1,0 +1,21 @@
+"#cover": {
+	backgroundColor: '#000',
+	opacity: 0.5
+},
+"#dialog": {
+	width: '50%',
+	height: '100dp',
+	backgroundColor: '#fff',
+	borderColor: '#000',
+	borderWidth: 2,
+	borderRadius: 4
+},
+"#message": {
+	top: '10dp',
+	left: '5dp',
+	right: '5dp',
+	textAlign: 'center'
+},
+"#close": {
+	bottom: '10dp'
+}

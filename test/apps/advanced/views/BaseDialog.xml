@@ -1,0 +1,7 @@
+<Alloy>
+	<View id="cover"/>
+	<View id="dialog">
+		<Label id="message">This is the dialog</Label>
+		<Button id="close" onClick="closeDialog">close</Button>
+	</View>
+</Alloy>
