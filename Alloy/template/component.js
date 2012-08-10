@@ -6,7 +6,8 @@ var Alloy = require('alloy'),
 
 <%= controllerCode %>
 
-module.exports = module.exports.extend({
+var __obj = _.isFunction(module.exports.extend) ? module.exports : Alloy.getController('BaseController');
+module.exports = __obj.extend({
 	__init: function() {
 		$ = this;
 	},
