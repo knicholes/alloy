@@ -1,6 +1,7 @@
-function onReady() {
-	var args = arguments[0] || {};
-	$.referenceWin = args.win;
+function onReady(args) {
+	Ti.API.info('- BaseDialog onReady');
+	args || (args = {});
+	this.referenceWin = args.win;
 }
 
 function openDialog() {
@@ -23,6 +24,7 @@ function closeDialog() {
 
 module.exports = Alloy.getController('BaseController').extend({
 	// alloy lifecycle functions
+	onInit: function(args) { Ti.API.info('- BaseDialog onInit'); },
 	onReady: onReady,
 
 	// custom functions

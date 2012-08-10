@@ -1,4 +1,4 @@
-function onReady() {
+function onReady(args) {
 	$.win.open();
 }
 
