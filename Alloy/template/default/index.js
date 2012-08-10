@@ -1,5 +1,11 @@
+function onReady(args) {
+	$.index.open();
+}
+
 function doClick(e) {  
     alert($.label.text);
 }
 
-$.index.open();
+module.exports = Alloy.getController('BaseController').extend({
+	onReady: onReady
+});
