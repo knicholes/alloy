@@ -11,17 +11,16 @@ function onReady(args) {
 	$.c.addEventListener('click',function(){
 		$.t.text = "You clicked C";
 	});
-
-	// anything defined against the $ will be exposed as methods/properties 
-	$.setText = function(text){
-		$.t.text = text;
-	};
-
-	$.getText = function() {
-		return $.t.text;
-	}
 }
 
 module.exports = Alloy.getController('BaseController').extend({
-	onReady: onReady
+	onReady: onReady,
+
+	// custom functions for public interface
+	setText: function(text) {
+		$.t.text = text;
+	},
+	getText: function() {
+		return $.t.text;
+	}
 });

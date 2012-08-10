@@ -18,22 +18,20 @@ function onReady(args) {
 			$.search.opacity = 1;
 			$.searchView.touchEnabled = true;
 		}
-	});
+	});	
+}
 
-	////////////////////////////////////
-	///////// public functions /////////
-	////////////////////////////////////
-	$.setHandlers = function(args) {
-		_.each(HANDLERS, function(h) {
-			if (args[h]) {
-				handlers[h] = args[h];
-			}
-		});
-	}	
+function setHandlers(args) {
+	_.each(HANDLERS, function(h) {
+		if (args[h]) {
+			handlers[h] = args[h];
+		}
+	});
 }
 
 module.exports = Alloy.getController('BaseController').extend({
-	onReady: onReady
+	onReady: onReady,
+	setHandlers: setHandlers
 });
 
 ///////////////////////////////////////

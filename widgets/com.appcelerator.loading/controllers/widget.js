@@ -8,15 +8,11 @@ function onReady(args) {
 	    $.loading.duration = 100;
 	} 
 	$.loading.start();
-
-	////////////////////////////////////////////////////////
-	////////// Exposed component object functions //////////
-	////////////////////////////////////////////////////////
-	$.setOpacity = function(opacity) {
-		$.loading.opacity = opacity;		
-	};
 }
 
 module.exports = Alloy.getController('BaseController').extend({
-	onReady: onReady
+	onReady: onReady,
+	setOpacity: function(opacity) {
+		$.loading.opacity = opacity;		
+	}
 });
