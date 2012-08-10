@@ -1,7 +1,7 @@
 function onReady(args) {
 	Ti.API.info('- BaseDialog onReady');
 	args || (args = {});
-	this.referenceWin = args.win;
+	$.referenceWin = args.win;
 }
 
 function openDialog() {
