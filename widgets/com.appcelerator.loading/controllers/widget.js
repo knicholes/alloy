@@ -1,4 +1,5 @@
-function postLayout(args) {
+function onReady(args) {
+	args || (args = {});
 	for (var k in args) {
 		$.loading[k] = args[k];	
 	}
@@ -15,3 +16,7 @@ function postLayout(args) {
 		$.loading.opacity = opacity;		
 	};
 }
+
+module.exports = Alloy.getController('BaseController').extend({
+	onReady: onReady
+});
