@@ -1,4 +1,3 @@
-
 var 	   _ = require('alloy/underscore')._,
 	Backbone = require('alloy/backbone'),
 	STR = require('alloy/string');
