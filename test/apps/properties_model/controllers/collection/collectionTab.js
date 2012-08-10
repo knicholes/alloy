@@ -1,29 +1,35 @@
 var items = new (Alloy.getCollection('collectionTab')), 
 	rowControllers = [];
 
-// update the row and save the model when the score changes
-items.on('change:score', function(model) {
-	if (model) {
-		var row = _.find(rowControllers, function(r) {
-			return r.id === model.id;
-		});
-		if (row) {
-			row.score.text = model.get('score');
-			model.save();
+function onReady(args) {
+	// update the row and save the model when the score changes
+	items.on('change:score', function(model) {
+		if (model) {
+			var row = _.find(rowControllers, function(r) {
+				return r.id === model.id;
+			});
+			if (row) {
+				row.score.text = model.get('score');
+				model.save();
+			}
 		}
-	}
-});
+	});
 
-// reset the table whenever a model is added or destroyed
-// completely. Also reset whenever the collection is reset.
-// Save the model changes if necessary.
-items.on('add destroy reset', function(model) { 
-	resetTableData();
-	if (model && model.save) { model.save(); }
-});
+	// reset the table whenever a model is added or destroyed
+	// completely. Also reset whenever the collection is reset.
+	// Save the model changes if necessary.
+	items.on('add destroy reset', function(model) { 
+		resetTableData();
+		if (model && model.save) { model.save(); }
+	});
 
-// fetch collection from Ti.App.Properties adapter
-items.fetch();
+	// fetch collection from Ti.App.Properties adapter
+	items.fetch();
+}
+
+module.exports = Alloy.getController('BaseController').extend({
+	onReady: onReady
+});
 
 //////////////////////////////////////
 ////////// private function //////////

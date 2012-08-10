@@ -6,11 +6,16 @@
 var animation = require('alloy/animation');
 	string = require('alloy/string');
 
-$.shake.on('click', function(e) { 
-	animation.shake($.mover);
-});
-$.trim.on('click', function(e) {
-	$.label.text = string.trim($.label.text);
-});
+function onReady(args) {
+	$.shake.on('click', function(e) { 
+		animation.shake($.mover);
+	});
+	$.trim.on('click', function(e) {
+		$.label.text = string.trim($.label.text);
+	});
+	$.index.open();
+}
 
-$.index.open();
+module.exports = Alloy.getController('BaseController').extend({
+	onReady: onReady
+});
